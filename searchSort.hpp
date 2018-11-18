@@ -29,10 +29,14 @@ class searchSort {
     void setLength(int);
     int getLength();
     void exportFile(std::string);
+    bool binarySearch(int);
+    void setFilename(std::string);
+    std::string getFilename();
  private:
     int* array;
-    int* unsortedArray;
+    int* originalArray;
     int length = 0;
     int maxValue = 0;
+    std::string filename = "";
 };
 #endif

@@ -32,7 +32,7 @@ int main() {
       lateFile.open("/Users/ryandirezze/Documents/GitHub/cs162_lab8/end.txt");
 
       // translate all text files into arrays
-      cout << "Translating files' contents into arrays..." << endl;
+//      cout << "Translating files' contents into arrays..." << endl;
 
       // baseline file (no '0' included in list of integers)
       cout << endl << "Translating baseline.txt..." << endl;
@@ -160,9 +160,10 @@ int main() {
 //         std::getline(cin, filename);
          cin >> filename;
          filename = filename + ".txt";
+         object->setFilename(filename);
          
          // export the array's contents to a file
-         object->exportFile(filename);
+         object->exportFile(object->getFilename());
 
          // print the (sorted) array
          cout << "      Sorted array:         ";
@@ -173,6 +174,90 @@ int main() {
       }
 
       // binary search
+      
+      // open files
+      cout << "Beginning binary search..." << endl;
+      cout << endl << "Opening files..." << endl;
+
+      for(int n=0; n<4; n++) {
+
+         // choose the appropriate object (file/array) as the loop makes each 'step'
+         if(n == 0) {
+            object = baseline;
+         }
+         else if(n == 1) {
+            object = early;
+         }
+         else if(n == 2) {
+            object = mid;
+         }
+         else if(n == 3) {
+            object = late;
+         }
+
+         ifstream inputFile;
+         inputFile.open(object->getFilename());
+
+         object->arrayFromFile(inputFile);
+      }
+      
+      // what value should be searched for?
+      cout << endl << "What number should be searched for? (0 - 9, inclusive)" << endl;
+      cout << "   Number: ";
+      val = -5;
+      cin >> val;
+      intValidation(val);  // validate the input is an integer
+
+      // make sure the user inputs a value <= 9
+      while(val >= 10) {
+         cout << "Whoops! You entered a number that's too big... \nPlease enter a number from 1 to 9, inclusive..." << endl;
+         cout << "   Number: ";
+         cin >> val;
+         intValidation(val);
+      }
+
+      cout << endl << "Searching..." << endl;
+
+//      baseline->print();
+
+      // if true; the value is in the file
+      cout << endl << "RESULTS:" << endl;
+      
+      // check the baseline file (value should not be found)
+//      baseline->print();
+      if(baseline->binarySearch(val)) {
+         cout << "   baseline.txt: target value found" << endl;
+      }
+      else {
+         cout << "   baseline.txt: target value not found" << endl;
+      }
+
+      // check the early.txt file (value should be found)
+//      early->print();
+      if(early->binarySearch(val)) {
+         cout << "   early.txt:    target value found" << endl;
+      }
+      else {
+         cout << "   early.txt:    target value not found" << endl;
+      }
+
+      // check the mid.txt file (value should be found)
+//      mid->print();
+      if(mid->binarySearch(val)) {
+         cout << "   mid.txt:      target value found" << endl;
+      }
+      else {
+         cout << "   mid.txt:      target value not found" << endl;
+      }
+
+      // check the late.txt file (value should be found)
+//      late->print();
+      if(late->binarySearch(val)) {
+         cout << "   late.txt:     target value found" << endl;
+      }
+      else {
+         cout << "   late.txt:     target value not found" << endl;
+      }
 
       // determine what the program should 'do' next
       cout << endl;

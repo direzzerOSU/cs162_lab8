@@ -6,7 +6,7 @@
 searchSort::~searchSort() {
    if(array != nullptr) {
       delete array;
-      delete unsortedArray;
+      delete originalArray;
    }
 }
 
@@ -28,7 +28,7 @@ int searchSort::elementCount(ifstream& inputFile) {
    std::string elem;
 
    if(inputFile) {
-      cout << "   Counting the number of elements in the current file..." << endl;
+//      cout << "   Counting the number of elements in the current file..." << endl;
 
       while(inputFile.good()) {
          inputFile >> elem;
@@ -45,14 +45,14 @@ void searchSort::arrayFromFile(ifstream& inputFile) {
 
    // verify the file opens successfully
    if(inputFile) {
-      cout << "   File opened successfully..." << endl;
+//      cout << "   File opened successfully..." << endl;
       length = elementCount(inputFile);
       array = new int[length];
       inputFile.seekg(0, inputFile.beg);
       inputFile.clear();
 
       // execute the loop until the file is empty
-      cout << "   Beginning to loop through file's elements..." << endl;
+//      cout << "   Beginning to loop through file's elements..." << endl;
       std::string elem;
       int n=0;
       
@@ -129,7 +129,7 @@ void searchSort::exportFile(std::string filename) {
 }
 
 void searchSort::countSort() {
-   unsortedArray = array;
+   originalArray = array;
 
    int* sortedArray = new int[length];   // sorted [updated] array
    int* arrayCounts;    // track the count of ints smaller than the value of the array's index
@@ -163,4 +163,44 @@ void searchSort::countSort() {
 
 //   delete temp;   // free (unsorted) array memory
    delete arrayCounts;     // free frequency count array memory
+}
+
+// search for an integer with binary search
+bool searchSort::binarySearch(int searchVal) {
+   int low, mid, high, diff;
+   low = 0;
+   high = length-1;
+
+//   cout << "Searching for " << searchVal << "..." << endl;
+
+   // cut the search area in half until range is searched
+   while(low <= high) {
+      mid = (low + high)/2;
+
+//      cout << endl << "low[" << low << "] = " << array[low] << endl;
+//      cout << "high[" << high << "] = " << array[high] << endl;
+//      cout << "mid[" << mid << "] =  " << array[mid] << endl;
+
+      if(array[mid] == 0) {
+ //        cout << endl << "searchValue found!" << endl;
+         return true;
+      }
+      else if(array[mid] > searchVal) {
+         high = mid-1;
+      }
+      else if(array[mid] < searchVal) {
+         low = mid+1;
+      }
+   }
+   return false;   
+}
+
+// sets an object's (output) filename
+void searchSort::setFilename(std::string x) {
+   filename = x;
+}
+
+// returns an object's (output) filename
+std::string searchSort::getFilename() {
+   return filename;
 }
