@@ -1,9 +1,3 @@
-/*********************************************************************
-** Program name: searchSort Lab8
-** Author: Ryan DiRezze
-** Date: November 18, 2018
-** Description: Integrates the program together to run as intended.
-*********************************************************************/
 
 #include "menu.hpp"
 #include "searchSort.hpp"
@@ -43,8 +37,6 @@ int main() {
 
       // translate all text files into arrays
 //      cout << "Translating files' contents into arrays..." << endl;
-
-      searchSort* object = nullptr;
 
       // baseline file (no '0' included in list of integers)
       cout << endl << "Translating baseline.txt..." << endl;
@@ -131,60 +123,159 @@ int main() {
       cout << endl << "Preparing to sort arrays & export sorted integer lists to new files..." << endl << endl;
 
       // step through each list of integers (from the files)
-//      searchSort* object = nullptr;
+//      searchSort* object;
       for(int n=0; n<4; n++) {
 
          // choose the appropriate object (file/array) as the loop makes each 'step'
          if(n == 0) {
-//            baseline->print();
-            object = baseline;
+//            baseline = baseline;
             cout << "   Baseline arrays: " << endl;
+
+            // print the (unsorted) array
+            cout << "      Unsorted array:       ";
+
+            // step through the original (unsorted) array & print
+            for(int k=0; k<baseline->getLength(); k++) {
+//               cout << "Accessing array values..." << endl;
+               cout << baseline->getInteger(k) << " ";
+            }
+
+            // sort the list
+//            cout << endl << "   Sorting array..." << endl;
+            baseline->countSort();
+
+         
+            // acquire user-input for the output file's name of the sorted list of integers
+            cout << endl << "      Output filename:      ";
+            std::string filename;
+//            cin.ignore();
+//            std::getline(cin, filename);
+            cin >> filename;
+            filename = filename + ".txt";
+            baseline->setFilename(filename);
+            
+            // export the array's contents to a file
+            baseline->exportFile(baseline->getFilename());
+
+            // print the (sorted) array
+            cout << "      Sorted array:         ";
+            for(int k=0; k<baseline->getLength(); k++) {
+               cout << baseline->getInteger(k) << " ";
+            }
+            cout << endl << endl;
          }
+
          else if(n == 1) {
-            object = early;
-            cout << "   Early arrays: " << endl;
+//            early = early;
+            cout << "   early arrays: " << endl;
+
+            // print the (unsorted) array
+            cout << "      Unsorted array:       ";
+
+            // step through the original (unsorted) array & print
+            for(int k=0; k<early->getLength(); k++) {
+//               cout << "Accessing array values..." << endl;
+               cout << early->getInteger(k) << " ";
+            }
+
+            // sort the list
+//            cout << endl << "   Sorting array..." << endl;
+            early->countSort();
+
+         
+            // acquire user-input for the output file's name of the sorted list of integers
+            cout << endl << "      Output filename:      ";
+            std::string filename;
+//            cin.ignore();
+//            std::getline(cin, filename);
+            cin >> filename;
+            filename = filename + ".txt";
+            early->setFilename(filename);
+            
+            // export the array's contents to a file
+            early->exportFile(early->getFilename());
+
+            // print the (sorted) array
+            cout << "      Sorted array:         ";
+            for(int k=0; k<early->getLength(); k++) {
+               cout << early->getInteger(k) << " ";
+            }
+            cout << endl << endl;
          }
          else if(n == 2) {
-            object = mid;
-            cout << "   Mid arrays: " << endl;
+//            mid = mid;
+            cout << "   mid arrays: " << endl;
+
+            // print the (unsorted) array
+            cout << "      Unsorted array:       ";
+
+            // step through the original (unsorted) array & print
+            for(int k=0; k<mid->getLength(); k++) {
+//               cout << "Accessing array values..." << endl;
+               cout << mid->getInteger(k) << " ";
+            }
+
+            // sort the list
+//            cout << endl << "   Sorting array..." << endl;
+            mid->countSort();
+
+         
+            // acquire user-input for the output file's name of the sorted list of integers
+            cout << endl << "      Output filename:      ";
+            std::string filename;
+//            cin.ignore();
+//            std::getline(cin, filename);
+            cin >> filename;
+            filename = filename + ".txt";
+            mid->setFilename(filename);
+            
+            // export the array's contents to a file
+            mid->exportFile(mid->getFilename());
+
+            // print the (sorted) array
+            cout << "      Sorted array:         ";
+            for(int k=0; k<mid->getLength(); k++) {
+               cout << mid->getInteger(k) << " ";
+            }
+            cout << endl << endl;
          }
          else if(n == 3) {
-            object = late;
-            cout << "   Late arrays: " << endl;
-         }
+//            late = late;
+            cout << "   late arrays: " << endl;
 
-         // print the (unsorted) array
-         cout << "      Unsorted array:       ";
+            // print the (unsorted) array
+            cout << "      Unsorted array:       ";
 
-         // step through the original (unsorted) array & print
-         for(int k=0; k<object->getLength(); k++) {
-//            cout << "Accessing array values..." << endl;
-            cout << object->getInteger(k) << " ";
-         }
+            // step through the original (unsorted) array & print
+            for(int k=0; k<late->getLength(); k++) {
+//               cout << "Accessing array values..." << endl;
+               cout << late->getInteger(k) << " ";
+            }
 
-         // sort the list
-//         cout << endl << "   Sorting array..." << endl;
-         object->countSort();
+            // sort the list
+//            cout << endl << "   Sorting array..." << endl;
+            late->countSort();
 
          
-         // acquire user-input for the output file's name of the sorted list of integers
-         cout << endl << "      Output filename:      ";
-         std::string filename;
-//         cin.ignore();
-//         std::getline(cin, filename);
-         cin >> filename;
-         filename = filename + ".txt";
-         object->setFilename(filename);
-         
-         // export the array's contents to a file
-         object->exportFile(object->getFilename());
+            // acquire user-input for the output file's name of the sorted list of integers
+            cout << endl << "      Output filename:      ";
+            std::string filename;
+//            cin.ignore();
+//            std::getline(cin, filename);
+            cin >> filename;
+            filename = filename + ".txt";
+            late->setFilename(filename);
+            
+            // export the array's contents to a file
+            late->exportFile(late->getFilename());
 
-         // print the (sorted) array
-         cout << "      Sorted array:         ";
-         for(int k=0; k<object->getLength(); k++) {
-            cout << object->getInteger(k) << " ";
+            // print the (sorted) array
+            cout << "      Sorted array:         ";
+            for(int k=0; k<late->getLength(); k++) {
+               cout << late->getInteger(k) << " ";
+            }
+            cout << endl << endl;
          }
-         cout << endl << endl;
       }
 
       // binary search
@@ -197,22 +288,37 @@ int main() {
 
          // choose the appropriate object (file/array) as the loop makes each 'step'
          if(n == 0) {
-            object = baseline;
+//            object = baseline;
+
+            ifstream inputFile;
+            inputFile.open(baseline->getFilename());
+
+            baseline->arrayFromFile(inputFile);
          }
          else if(n == 1) {
-            object = early;
+//            object = early;
+
+            ifstream inputFile;
+            inputFile.open(early->getFilename());
+
+            early->arrayFromFile(inputFile);
          }
          else if(n == 2) {
-            object = mid;
+//            object = mid;
+
+            ifstream inputFile;
+            inputFile.open(mid->getFilename());
+
+            mid->arrayFromFile(inputFile);
          }
          else if(n == 3) {
-            object = late;
+//            object = late;
+
+            ifstream inputFile;
+            inputFile.open(late->getFilename());
+
+            late->arrayFromFile(inputFile);
          }
-
-         ifstream inputFile;
-         inputFile.open(object->getFilename());
-
-         object->arrayFromFile(inputFile);
       }
       
       // what value should be searched for?

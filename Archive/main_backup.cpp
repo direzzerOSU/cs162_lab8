@@ -1,9 +1,3 @@
-/*********************************************************************
-** Program name: searchSort Lab8
-** Author: Ryan DiRezze
-** Date: November 18, 2018
-** Description: Integrates the program together to run as intended.
-*********************************************************************/
 
 #include "menu.hpp"
 #include "searchSort.hpp"
@@ -43,8 +37,6 @@ int main() {
 
       // translate all text files into arrays
 //      cout << "Translating files' contents into arrays..." << endl;
-
-      searchSort* object = nullptr;
 
       // baseline file (no '0' included in list of integers)
       cout << endl << "Translating baseline.txt..." << endl;
@@ -131,12 +123,11 @@ int main() {
       cout << endl << "Preparing to sort arrays & export sorted integer lists to new files..." << endl << endl;
 
       // step through each list of integers (from the files)
-//      searchSort* object = nullptr;
+      searchSort* object;
       for(int n=0; n<4; n++) {
 
          // choose the appropriate object (file/array) as the loop makes each 'step'
          if(n == 0) {
-//            baseline->print();
             object = baseline;
             cout << "   Baseline arrays: " << endl;
          }
